@@ -8,9 +8,13 @@ export default class Cars {
     this.client = instance;
   }
 
-  async getAllCars() {
+  async getAll() {
     const { data } = await this.client.get('cars');
     return data;
+  }
+
+  add (car) {
+    return this.client.post('cars', car)
   }
 }
 
