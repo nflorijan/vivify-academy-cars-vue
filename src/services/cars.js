@@ -24,6 +24,10 @@ export default class Cars {
   edit (car) {
     return this.client.put(`cars/${car.id}`, car)
   }
+
+  delete(id) {
+    return this.client.delete(`cars/${id}`)
+  }
 }
 
 

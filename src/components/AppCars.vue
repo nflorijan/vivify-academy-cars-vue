@@ -13,7 +13,8 @@
         <li class="list-group-item">Engine: {{ car.engine }}</li>
       </ul>
       <div class="card-body">
-        <router-link :to="{ name: 'edit', params: { id: car.id } }" class="card-link">Edit</router-link>
+        <router-link class="btn btn-warning" :to="{ name: 'edit', params: { id: car.id } }" >Edit</router-link>
+        <button class="btn btn-danger" @click="deleteCar(car.id)">Delete</button>
       </div>
     </div>
   </div>
@@ -29,6 +30,14 @@ export default {
   },
  async created() {
    this.allCars = await cars.getAll()
+  },
+  methods: {
+    async deleteCar (car) {
+      const response = await cars.delete(car)
+      if (response.status === 200) {
+        this.allCars = this.allCars.filter(el => el.id !== car) 
+      }
+    }
   }
 }
 </script>
