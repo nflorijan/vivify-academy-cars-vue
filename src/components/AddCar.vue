@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addCar">
+  <form @submit.prevent="addCar" @onReset="resetForm">
     <div class="form-group row">
       <label class="col-4 col-form-label" for="brand">Brand</label> 
       <div class="col-8">
@@ -75,6 +75,7 @@
     <div class="form-group row">
       <div class="offset-4 col-8">
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+          <button name="reset" type="reset" class="btn btn-secondary">Reset</button>
       </div>
     </div>
   </form>
@@ -86,15 +87,7 @@ export default {
   data () {
     return {
       years: Array(29).fill(1990).map((n, i) => n + i),
-      car: {
-        brand: '',
-        model: '',
-        maxSpeed: 200,
-        year: 1990,
-        isAutomatic: false,
-        numberOfDoors: 4,
-        engine: 'diesel'
-      }
+      car:  this.basicCar()
     }
   },
   methods: {
@@ -107,8 +100,24 @@ export default {
           console.log(error)
         })
     },
+
+    resetForm () {
+      this.car = this.getDefaultCar()
+    },
+
     redirectToCars () {
       this.$router.push({ name: 'cars' })
+    },
+    basicCar () {
+      return {
+        brand: '',
+        model: '',
+        maxSpeed: 200,
+        year: 1990,
+        isAutomatic: false,
+        numberOfDoors: 4,
+        engine: 'diesel'
+      }
     }
   }
 }
