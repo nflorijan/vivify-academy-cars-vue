@@ -75,7 +75,8 @@
     <div class="form-group row">
       <div class="offset-4 col-8">
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-          <button name="reset" type="reset" class="btn btn-secondary">Reset</button>
+        <button name="reset" type="preview" @click="preview" class="btn btn-info">Preview</button>
+        <button name="reset" type="reset" class="btn btn-secondary">Reset</button>
       </div>
     </div>
   </form>
@@ -118,6 +119,17 @@ export default {
         numberOfDoors: 4,
         engine: 'diesel'
       }
+    },
+     preview () {
+      alert(`
+        Brand: ${this.car.brand}
+        Model: ${this.car.model}
+        Year: ${this.car.year}
+        Maximum Speed: ${this.car.maxSpeed}
+        Number of Doors: ${this.car.numberOfDoors}
+        Engine: ${this.car.model}
+        ${this.car.isAutomatic ? 'Automatic' : 'Manual'}
+      `)
     }
   }
 }
