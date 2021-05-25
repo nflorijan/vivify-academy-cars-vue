@@ -22,6 +22,11 @@ const routes = [
     name: 'add'
   },
   {
+    path: '/edit/:id',
+    component: AddCar,
+    name: 'edit'
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

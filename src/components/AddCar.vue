@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="addCar" @onReset="resetForm">
+  <form @submit.prevent="subbmitCar" @onReset="resetForm">
     <div class="form-group row">
       <label class="col-4 col-form-label" for="brand">Brand</label> 
       <div class="col-8">
@@ -91,7 +91,20 @@ export default {
       car:  this.basicCar()
     }
   },
+  created() {
+   cars.get(this.$route.params.id)
+      .then((response) => {
+        this.car = response.data
+    })
+  },
   methods: {
+    subbmitCar() {
+      if (this.car.id) {
+        this.editCar()
+      } else {
+        this.addCar()
+      }
+    },
     addCar () {
       cars.add(this.car)
         .then((success) => {
@@ -130,7 +143,16 @@ export default {
         Engine: ${this.car.model}
         ${this.car.isAutomatic ? 'Automatic' : 'Manual'}
       `)
-    }
+    },
+     editCar () {
+      cars.edit(this.car)
+        .then((success) => {
+          this.redirectToCars()
+          console.log(success)
+        }).catch((error) => {
+          console.log(error)
+        })
+    },
   }
 }
 </script>

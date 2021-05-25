@@ -16,6 +16,14 @@ export default class Cars {
   add (car) {
     return this.client.post('cars', car)
   }
+
+  get (id) {
+    return this.client.get(`cars/${id}`)
+  }
+
+  edit (car) {
+    return this.client.put(`cars/${car.id}`, car)
+  }
 }
 
 

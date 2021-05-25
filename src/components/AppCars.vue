@@ -12,6 +12,9 @@
         <li class="list-group-item">{{ car.isAutomatic ? 'Automatic' : 'Manual' }}</li>
         <li class="list-group-item">Engine: {{ car.engine }}</li>
       </ul>
+      <div class="card-body">
+        <router-link :to="{ name: 'edit', params: { id: car.id } }" class="card-link">Edit</router-link>
+      </div>
     </div>
   </div>
 </template>
